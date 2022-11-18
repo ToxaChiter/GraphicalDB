@@ -1,0 +1,93 @@
+﻿<Page x:Class="GraphicalDB.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GraphicalDB.Pages"
+      mc:Ignorable="d" 
+      Title="AdminPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="175*"/>
+            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="175*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="125*"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="125*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+
+            <ImageBrush ImageSource="/Images/back-image.jpg"
+                        Stretch="Uniform"/>
+        </Grid.Background>
+
+        <Border x:Name="AdminBorder"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" 
+                MinWidth="400"
+                MinHeight="200"
+                CornerRadius="20"
+                Grid.Row="1"
+                Grid.Column="1">
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0" Opacity="0.95" >
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid x:Name="AdminGrid">
+               
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120*"/>
+                    <ColumnDefinition Width="160*"/>
+                    <ColumnDefinition Width="120*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1">
+
+                    <TextBlock 
+                        Text="Администрирование"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Background="Transparent"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"
+                        TextAlignment="Center"
+                        Margin="0 10 0 0">
+                    </TextBlock>
+                    
+                    <Button 
+                        x:Name="AdminUsersButton"
+                        Content="Пользователи"
+                        Margin="0 15 0 0"
+                        Style="{StaticResource BlueButtonStyle}"
+                        Template="{StaticResource RoundedButtonTemplate}">
+                    </Button>
+
+                    <Button 
+                        x:Name="AdminParticipantsButton"
+                        Content="Участники конкурса"
+                        Margin="0 15 0 0"
+                        Style="{StaticResource BlueButtonStyle}"
+                        Template="{StaticResource RoundedButtonTemplate}">
+                    </Button>
+
+                    <Button 
+                        x:Name="AdminBackButton"
+                        Content="Назад"
+                        Margin="0 15 0 0"
+                        Style="{StaticResource BlueButtonStyle}"
+                        Template="{StaticResource RoundedButtonTemplate}">
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

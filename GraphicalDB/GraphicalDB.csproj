@@ -8,19 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="key-icon.png" />
-    <None Remove="user-icon.png" />
+    <None Remove="Images\key-icon.png" />
+    <None Remove="Images\user-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="key-icon.png" />
-    <Resource Include="user-icon.png" />
+    <Resource Include="Images\key-icon.png" />
+    <Resource Include="Images\user-icon.png" />
   </ItemGroup>
 
 </Project>

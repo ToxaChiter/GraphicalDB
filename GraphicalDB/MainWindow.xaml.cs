@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GraphicalDB;
 
@@ -24,6 +14,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        App.MainWindow = this;
+
+        ChangePage(new Uri("Pages/LoginPage.xaml", UriKind.Relative));
 
         var borderStartAnimation = new PointAnimation
         {
@@ -75,6 +69,11 @@ public partial class MainWindow : Window
         MainFrame.Navigate(source);
     }
 
+    public void BackButton_Click(object sender, RoutedEventArgs e)
+    {
+        MainFrame.GoBack();
+    }
+
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
         Application.Current.Shutdown();
@@ -101,5 +100,10 @@ public partial class MainWindow : Window
         {
             WindowState = WindowState.Maximized;
         }
+    }
+
+    public static void Message(string message)
+    {
+        MessageBox.Show(message);
     }
 }

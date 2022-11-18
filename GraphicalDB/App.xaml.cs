@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using GraphicalDB.DataBase;
+using System.Windows;
 
 namespace GraphicalDB;
 
@@ -7,4 +8,6 @@ namespace GraphicalDB;
 /// </summary>
 public partial class App : Application
 {
+    internal static User AuthorizedUser { get; set; }
+    internal static MainWindow MainWindow { get; set; }
 }

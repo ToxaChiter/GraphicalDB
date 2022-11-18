@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace GraphicalDB;
+namespace GraphicalDB.DataBase;
 
 internal class MyDbContext : DbContext
 {
@@ -10,10 +10,10 @@ internal class MyDbContext : DbContext
         Database.EnsureCreated();
     }
     public DbSet<Participant> Participants { get; set; } = null!;
+    public DbSet<User> Users { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("Data Source=MusicalContest.db");
-        optionsBuilder.LogTo(DbLogic.Log, Microsoft.Extensions.Logging.LogLevel.Information);
     }
 }

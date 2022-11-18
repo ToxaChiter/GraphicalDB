@@ -7,8 +7,8 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="500"
-        Width="800"
+        Height="600"
+        Width="1000"
         AllowsTransparency="True"
         WindowStyle="None"
         Background="Transparent"
@@ -55,17 +55,18 @@
                 <RowDefinition Height="25*"/>
             </Grid.RowDefinitions>
             
-            <Frame x:Name="MainFrame" 
-                   Source="/LoginPage.xaml" 
+            <Frame x:Name="MainFrame"
                    NavigationUIVisibility="Hidden" 
                    Grid.Column="1" 
                    Grid.Row="1"
                    Margin="0 10 0 0"
-                   Grid.ColumnSpan="3" Content="">
+                   Grid.ColumnSpan="3">
 
             </Frame>
-            
+
             <Button x:Name="CloseButton" 
+                    MaxHeight="30"
+                    MaxWidth="30"
                     Grid.Column="4" 
                     Grid.Row="0"                   
                     BorderThickness="0"
@@ -91,7 +92,7 @@
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border
-                                        CornerRadius="10"
+                                        CornerRadius="15"
                                         Background="{TemplateBinding Background}">
                             <ContentPresenter VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
@@ -101,6 +102,8 @@
             </Button>
 
             <Button x:Name="SizeButton" 
+                    MaxHeight="30"
+                    MaxWidth="30"
                     Grid.Column="3" 
                     Grid.Row="0"                   
                     BorderThickness="0"
@@ -125,7 +128,7 @@
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
-                                        CornerRadius="11.5"
+                                        CornerRadius="15"
                                         Background="{TemplateBinding Background}">
                             <ContentPresenter VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
@@ -135,6 +138,8 @@
             </Button>
 
             <Button x:Name="HideButton" 
+                    MaxHeight="30"
+                    MaxWidth="30"
                     Grid.Column="2" 
                     Grid.Row="0"                   
                     BorderThickness="0"
@@ -159,8 +164,8 @@
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="HideButtonBorder" Padding="3"
-                                        CornerRadius="11.5"
+                        <Border 
+                                        CornerRadius="15"
                                         Background="{TemplateBinding Background}">
                             <ContentPresenter VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
