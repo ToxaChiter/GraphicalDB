@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphicalDB.DataBase;
+using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -11,6 +12,7 @@ namespace GraphicalDB;
 /// </summary>
 public partial class MainWindow : Window
 {
+    internal MyDbContext Context { get; } = new MyDbContext();
     public MainWindow()
     {
         InitializeComponent();
@@ -40,7 +42,7 @@ public partial class MainWindow : Window
         gradient.BeginAnimation(LinearGradientBrush.StartPointProperty, borderStartAnimation);
         gradient.BeginAnimation(LinearGradientBrush.EndPointProperty, borderEndAnimation);
 
-
+        //DbLogic.Testing();
 
         //var backgroundStartAnimation = new PointAnimation
         //{

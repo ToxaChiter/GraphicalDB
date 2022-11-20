@@ -32,7 +32,11 @@
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       x:Name="TableDataGrid"
                       AutoGenerateColumns="False"
-                      CanUserAddRows="False">
+                      CanUserAddRows="False"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      EnableColumnVirtualization="True"
+                      EnableRowVirtualization="True"
+                      Loaded="ParticipantsTableDataGrid_Loaded">
 
                 <DataGrid.Columns >
                     <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
@@ -52,31 +56,31 @@
                     <DataGridTextColumn Header="Участник" 
                                         IsReadOnly="True" 
                                         CanUserResize="False" 
-                                        Width="*"  
+                                        Width="auto"  
                                         Binding="{Binding Name}"/>
 
                     <DataGridTextColumn Header="Год рождения" 
                                         IsReadOnly="True" 
                                         CanUserResize="False" 
-                                        Width="*"  
+                                        Width="auto"  
                                         Binding="{Binding BirthYear}"/>
 
                     <DataGridTextColumn Header="Страна" 
                                         IsReadOnly="True" 
                                         CanUserResize="False" 
-                                        Width="*"  
+                                        Width="auto"  
                                         Binding="{Binding Country}"/>
 
                     <DataGridTextColumn Header="Инструмент" 
                                         IsReadOnly="True" 
                                         CanUserResize="False" 
-                                        Width="*" 
+                                        Width="auto" 
                                         Binding="{Binding Instrument}"/>
 
                     <DataGridTextColumn Header="Место" 
                                         IsReadOnly="True" 
                                         CanUserResize="False"
-                                        Width="*" 
+                                        Width="auto" 
                                         Binding="{Binding Place}"/>
 
                     <DataGridTemplateColumn Header="Операции" IsReadOnly="True" Width="auto">
@@ -107,7 +111,7 @@
             <Button x:Name="AddParticipantButton"
                     Content="Добавить участника"
                     Style="{StaticResource BlueButtonStyle}"
-                    Template="{StaticResource RoundedButtonTemplate}"/>
+                    Template="{StaticResource RoundedButtonTemplate}" Click="AddParticipantButton_Click"/>
 
             <Button x:Name="Top3Button"
                     Margin="0 20 0 0"
@@ -135,7 +139,7 @@
                     Content="Назад"
                     Margin="0 20 0 0"
                     Style="{StaticResource BlueButtonStyle}"
-                    Template="{StaticResource RoundedButtonTemplate}"/>
+                    Template="{StaticResource RoundedButtonTemplate}" IsCancel="True"/>
 
         </StackPanel>
     </Grid>

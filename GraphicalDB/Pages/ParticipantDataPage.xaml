@@ -110,10 +110,10 @@
             </Button>
 
             <Button x:Name="BackButton"
-                    Content="Назад"
+                    Content="Сменить аккаунт"
                     Margin="0 20 0 0"
                     Style="{StaticResource BlueButtonStyle}"
-                    Template="{StaticResource RoundedButtonTemplate}"/>
+                    Template="{StaticResource RoundedButtonTemplate}" IsCancel="True"/>
 
         </StackPanel>
     </Grid>

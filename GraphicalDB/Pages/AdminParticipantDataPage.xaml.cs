@@ -1,28 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using GraphicalDB.DataBase;
+using GraphicalDB.DialogWindows;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace GraphicalDB.Pages
-{
-    /// <summary>
-    /// Логика взаимодействия для AdminDataPage.xaml
-    /// </summary>
-    public partial class AdminDataPage : Page
+namespace GraphicalDB.Pages;
+
+/// <summary>
+/// Логика взаимодействия для AdminDataPage.xaml
+/// </summary>
+public partial class AdminDataPage : Page
+{ 
+    public AdminDataPage()
     {
-        public AdminDataPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        BackButton.Click += App.MainWindow.BackButton_Click;
+    }
+
+    private void ParticipantsTableDataGrid_Loaded(object sender, System.Windows.RoutedEventArgs e)
+    {
+        MainWindow mainWindow = App.MainWindow;
+        mainWindow.Context.Database.EnsureCreated();
+        mainWindow.Context.Participants.Load();
+        TableDataGrid.ItemsSource = mainWindow.Context.Participants.Local.ToObservableCollection();
+    }
+
+    private void AddParticipantButton_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Animation;
 
 namespace GraphicalDB;
@@ -21,11 +22,14 @@ public partial class LoginPage : Page
         string login = LoginBox.Text;
         string password = PasswordBox.Password;
 
+        Keyboard.ClearFocus();
+
         var user = DbLogic.FindUser(u => string.Equals(u.Login, login));
 
         if (user is null)
         {
             LoginBox.Clear();
+            LoginBox.Focus();
             PasswordBox.Clear();
 
             MessageBox.Show(
@@ -38,12 +42,13 @@ public partial class LoginPage : Page
             return;
         }
 
-        if (!string.Equals(user.Password, DbLogic.HashPassword(user, password)))
+        if (!DbLogic.CheckPassword(user, password))
         {
             PasswordBox.Clear();
+            PasswordBox.Focus();
 
             MessageBox.Show(
-                        "Неверный пароль",
+                        $"Неверный пароль: {password}",
                         "Ошибка!",
                         MessageBoxButton.OK,
                         MessageBoxImage.Error,
@@ -52,16 +57,18 @@ public partial class LoginPage : Page
             return;
         }
 
+        LoginBox.Clear();
+        PasswordBox.Clear();
 
         App.AuthorizedUser = user;
 
         if (user.Role == Role.Admin)
         {
-            ((MainWindow)Application.Current.MainWindow).ChangePage(new Uri("Pages/AdminPage.xaml", UriKind.Relative));
+            App.MainWindow.ChangePage(new Uri("Pages/AdminPage.xaml", UriKind.Relative));
         }
         else
         {
-            ((MainWindow)Application.Current.MainWindow).ChangePage(new Uri("Pages/ParticipantDataPage.xaml", UriKind.Relative));
+            App.MainWindow.ChangePage(new Uri("Pages/ParticipantDataPage.xaml", UriKind.Relative));
         }
     }
 

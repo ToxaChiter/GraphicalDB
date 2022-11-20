@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Security.Cryptography;
+using System.Collections.ObjectModel;
 
 namespace GraphicalDB.DataBase;
 
 internal static class DbLogic
 {
-    private static PasswordHasher<User> PasswordHasher { get; } = new PasswordHasher<User>();
     private static string Path { get; } = "DbLog.txt";
 
     public static void Log(string message)
@@ -64,26 +66,59 @@ internal static class DbLogic
         return users.FirstOrDefault(predicate);
     }
 
-    public static string HashPassword(User user, string password)
+    public static string HashPassword(string password)
     {
-        return PasswordHasher.HashPassword(user, password);
+        byte[] tmpSource;
+        byte[] tmpHash;
+
+        tmpSource = Encoding.ASCII.GetBytes(password);
+        tmpHash = MD5.Create().ComputeHash(tmpSource);
+
+        var builder = new StringBuilder(tmpHash.Length);
+        for (int i = 0; i < tmpHash.Length; i++)
+        {
+            builder.Append(tmpHash[i]);
+        }
+
+        return builder.ToString();
     }
 
     public static bool CheckPassword(User user, string password)
     {
-        var result = PasswordHasher.VerifyHashedPassword(user, user.Password, password);
-        return result != PasswordVerificationResult.Failed;
+        return string.Equals(user.Password, HashPassword(password));
     }
 
     public static void Testing()
     {
         using var context = new MyDbContext();
 
-        context.Participants.Add(new Participant()
+        context.Database.EnsureDeleted();
+        context.Database.EnsureCreated();
+
+
+        var user = new User()
         {
-            Name = "Test",
-            BirthYear = 0
-        });
+            Login = "Admin",
+            Password = HashPassword("password"),
+            Role = Role.Admin
+        };
+
+
+
+        var table = new ObservableCollection<Participant>
+        {
+            new Participant { Id = 1, Name = "Andrew", Country = "Russia", BirthYear = 2004, Instrument = Instrument.Guitar, Place = 3 },
+            new Participant { Id = 2, Name = "Lila", Country = "Belarus", BirthYear = 2002, Instrument = Instrument.Piano, Place = 2 },
+            new Participant { Id = 3, Name = "Ulia", Country = "Ukraine", BirthYear = 2008, Instrument = Instrument.Violin, Place = 4 },
+            new Participant { Id = 4, Name = "Nick", Country = "USA", BirthYear = 1901, Instrument = Instrument.Cello, Place = 1 }
+        };
+
+        foreach (var part in table)
+        {
+            context.Participants.Add(part);
+        }        
+
+        context.Users.Add(user);
         context.SaveChanges();
     }
 }

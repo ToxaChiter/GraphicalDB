@@ -6,7 +6,7 @@ internal class MyDbContext : DbContext
 {
     public MyDbContext()
     {
-        Database.EnsureDeleted();
+        //Database.EnsureDeleted();
         Database.EnsureCreated();
     }
     public DbSet<Participant> Participants { get; set; } = null!;

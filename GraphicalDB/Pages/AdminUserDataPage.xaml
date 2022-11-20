@@ -32,16 +32,17 @@
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       x:Name="TableDataGrid"
                       AutoGenerateColumns="False"
-                      CanUserAddRows="False">
+                      CanUserAddRows="False"
+                      Loaded="UsersTableDataGrid_Loaded">
 
                 <DataGrid.Columns >
-                    <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                    <!--<DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                         <DataGridCheckBoxColumn.HeaderTemplate>
                             <DataTemplate>
                                 <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
                             </DataTemplate>
                         </DataGridCheckBoxColumn.HeaderTemplate>
-                    </DataGridCheckBoxColumn>
+                    </DataGridCheckBoxColumn>-->
 
                     <DataGridTextColumn Header="#" 
                                         IsReadOnly="True" 
@@ -52,30 +53,30 @@
                     <DataGridTextColumn Header="Пользователь" 
                                         IsReadOnly="True" 
                                         CanUserResize="False" 
-                                        Width="*"  
+                                        Width="auto"  
                                         Binding="{Binding Login}"/>
 
-                    <DataGridTextColumn Header="Пароль" 
+                    <DataGridTextColumn Header="Пароль (хэширован)" 
                                         IsReadOnly="True" 
                                         CanUserResize="False" 
-                                        Width="*"  
+                                        Width="auto"  
                                         Binding="{Binding Password}"/>
 
                     <DataGridTextColumn Header="Роль" 
                                         IsReadOnly="True" 
                                         CanUserResize="False" 
-                                        Width="*" 
+                                        Width="auto" 
                                         Binding="{Binding Role}"/>
 
                     <DataGridTemplateColumn Header="Операции" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource GridEditButtonStyle}">
+                                    <Button Style="{StaticResource GridEditButtonStyle}" Click="EditButton_Click">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource GridButtonIcon}"/>
                                     </Button>
 
-                                    <Button Style="{StaticResource GridRemoveButtonStyle}" Margin="5 0 0 0">
+                                    <Button Style="{StaticResource GridRemoveButtonStyle}" Margin="5 0 0 0" Click="DeleteButton_Click">
                                         <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource GridButtonIcon}"/>
                                     </Button>
                                 </StackPanel>
@@ -95,13 +96,13 @@
             <Button x:Name="AddUserButton"
                     Content="Добавить пользователя"
                     Style="{StaticResource BlueButtonStyle}"
-                    Template="{StaticResource RoundedButtonTemplate}"/>
+                    Template="{StaticResource RoundedButtonTemplate}" Click="AddUserButton_Click"/>
 
             <Button x:Name="BackButton"
                     Content="Назад"
                     Margin="0 20 0 0"
                     Style="{StaticResource BlueButtonStyle}"
-                    Template="{StaticResource RoundedButtonTemplate}"/>
+                    Template="{StaticResource RoundedButtonTemplate}" IsCancel="True"/>
 
         </StackPanel>
     </Grid>

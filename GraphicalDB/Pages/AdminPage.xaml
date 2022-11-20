@@ -20,13 +20,9 @@
             <RowDefinition Height="125*"/>
         </Grid.RowDefinitions>
 
-        <Grid.Background>
+        
 
-            <ImageBrush ImageSource="/Images/back-image.jpg"
-                        Stretch="Uniform"/>
-        </Grid.Background>
-
-        <Border x:Name="AdminBorder"
+        <Border 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch" 
                 MinWidth="400"
@@ -36,58 +32,75 @@
                 Grid.Column="1">
 
             <Border.Background>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0" Opacity="0.95" >
-                    <GradientStop Color="#060531" Offset="0"/>
-                    <GradientStop Color="#1B1448" Offset="1"/>
-                </LinearGradientBrush>
+
+                <ImageBrush ImageSource="../Images/back-image.jpg"
+                        Stretch="Fill"/>
             </Border.Background>
 
-            <Grid x:Name="AdminGrid">
-               
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120*"/>
-                    <ColumnDefinition Width="160*"/>
-                    <ColumnDefinition Width="120*"/>
-                </Grid.ColumnDefinitions>
+            <Border x:Name="AdminBorder"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" 
+                MinWidth="400"
+                MinHeight="200"
+                CornerRadius="20"
+                Grid.Row="1"
+                Grid.Column="1">
 
-                <StackPanel Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0" Opacity="0.95" >
+                        <GradientStop Color="#060531" Offset="0"/>
+                        <GradientStop Color="#1B1448" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
 
-                    <TextBlock 
+                <Grid x:Name="AdminGrid">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120*"/>
+                        <ColumnDefinition Width="160*"/>
+                        <ColumnDefinition Width="120*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="1">
+
+                        <TextBlock 
                         Text="Администрирование"
                         FontSize="16"
                         FontWeight="Bold"
                         Background="Transparent"
+                        Foreground="White"
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch"
                         TextAlignment="Center"
                         Margin="0 10 0 0">
-                    </TextBlock>
-                    
-                    <Button 
+                        </TextBlock>
+
+                        <Button 
                         x:Name="AdminUsersButton"
                         Content="Пользователи"
                         Margin="0 15 0 0"
                         Style="{StaticResource BlueButtonStyle}"
-                        Template="{StaticResource RoundedButtonTemplate}">
-                    </Button>
+                        Template="{StaticResource RoundedButtonTemplate}" Click="AdminUsersButton_Click">
+                        </Button>
 
-                    <Button 
+                        <Button 
                         x:Name="AdminParticipantsButton"
                         Content="Участники конкурса"
                         Margin="0 15 0 0"
                         Style="{StaticResource BlueButtonStyle}"
-                        Template="{StaticResource RoundedButtonTemplate}">
-                    </Button>
+                        Template="{StaticResource RoundedButtonTemplate}" Click="AdminParticipantsButton_Click">
+                        </Button>
 
-                    <Button 
+                        <Button 
                         x:Name="AdminBackButton"
-                        Content="Назад"
+                        Content="Сменить аккаунт"
                         Margin="0 15 0 0"
                         Style="{StaticResource BlueButtonStyle}"
-                        Template="{StaticResource RoundedButtonTemplate}">
-                    </Button>
-                </StackPanel>
-            </Grid>
+                        Template="{StaticResource RoundedButtonTemplate}" IsCancel="True">
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
         </Border>
     </Grid>
 </Page>

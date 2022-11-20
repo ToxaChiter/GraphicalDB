@@ -12,7 +12,8 @@
         AllowsTransparency="True"
         WindowStyle="None"
         Background="Transparent"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown"
+        Icon="{Icon:MaterialImage Kind=AccountMusicOutline}">
     
     <Border x:Name="MainBorder"
             CornerRadius="15"
