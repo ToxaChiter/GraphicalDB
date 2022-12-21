@@ -26,4 +26,19 @@
     <Resource Include="Images\user-icon.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="DialogWindows\SearchParticipantWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DialogWindows\AddParticipantWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="DialogWindows\AddParticipantWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

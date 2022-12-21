@@ -1,4 +1,6 @@
-﻿namespace GraphicalDB.DataBase;
+﻿using System.ComponentModel;
+
+namespace GraphicalDB.DataBase;
 
 enum Instrument
 {
@@ -8,14 +10,106 @@ enum Instrument
     Cello
 }
 
-class Participant
+class Participant : INotifyPropertyChanged
 {
+    private string name;
+    private int birthYear;
+    private string country;
+    private Instrument instrument;
+    private int place;
+
+
     public int Id { get; set; }
-    public string Name { get; set; }
-    public int BirthYear { get; set; }
-    public string Country { get; set; }
-    public Instrument Instrument { get; set; }
-    public int Place { get; set; }
+    public string Name
+    {
+        get
+        {
+            return name;
+        }
+
+        set
+        {
+            if (value != name)
+            {
+                name = value;
+                NotifyPropertyChanged(nameof(Name));
+            }
+        }
+    }
+
+    public int BirthYear
+    {
+        get
+        {
+            return birthYear;
+        }
+
+        set
+        {
+            if (value != birthYear)
+            {
+                birthYear = value;
+                NotifyPropertyChanged(nameof(BirthYear));
+            }
+        }
+    }
+
+    public string Country
+    {
+        get
+        {
+            return country;
+        }
+
+        set
+        {
+            if (value != country)
+            {
+                country = value;
+                NotifyPropertyChanged(nameof(Country));
+            }
+        }
+    }
+
+    public Instrument Instrument
+    {
+        get
+        {
+            return instrument;
+        }
+
+        set
+        {
+            if (value != instrument)
+            {
+                instrument = value;
+                NotifyPropertyChanged(nameof(Instrument));
+            }
+        }
+    }
+
+    public int Place
+    {
+        get
+        {
+            return place;
+        }
+
+        set
+        {
+            if (value != place)
+            {
+                place = value;
+                NotifyPropertyChanged(nameof(Place));
+            }
+        }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+    private void NotifyPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 
     public override string ToString()
     {

@@ -32,16 +32,20 @@
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       x:Name="TableDataGrid"
                       AutoGenerateColumns="False"
-                      CanUserAddRows="False">
+                      CanUserAddRows="False"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      EnableColumnVirtualization="True"
+                      EnableRowVirtualization="True"
+                      Loaded="ParticipantsTableDataGrid_Loaded">
 
                 <DataGrid.Columns >
-                    <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                    <!--<DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                         <DataGridCheckBoxColumn.HeaderTemplate>
                             <DataTemplate>
                                 <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
                             </DataTemplate>
                         </DataGridCheckBoxColumn.HeaderTemplate>
-                    </DataGridCheckBoxColumn>
+                    </DataGridCheckBoxColumn>-->
 
                     <DataGridTextColumn Header="#" 
                                         IsReadOnly="True" 
@@ -82,7 +86,8 @@
             </DataGrid>
         </DockPanel>
 
-        <StackPanel Orientation="Vertical" 
+        <StackPanel x:Name="buttonPanel"
+                    Orientation="Vertical" 
                     Margin="25 20 0 0" 
                     Grid.Column="0"
                     Grid.Row="0"
@@ -90,7 +95,9 @@
 
             <Button x:Name="Top3Button"
                     Style="{StaticResource BlueButtonStyle}"
-                    Template="{StaticResource RoundedButtonTemplate}" MinHeight="40">
+                    Template="{StaticResource RoundedButtonTemplate}" 
+                    MinHeight="40"
+                    Click="Top3Button_Click">
 
                 <ContentControl>
                     <TextBlock TextWrapping="WrapWithOverflow" 
@@ -106,14 +113,33 @@
                     Content="Самые юные участники"
                     Margin="0 20 0 0"
                     Style="{StaticResource BlueButtonStyle}"
-                    Template="{StaticResource RoundedButtonTemplate}">
+                    Template="{StaticResource RoundedButtonTemplate}"
+                    Click="YoungersButton_Click">
+            </Button>
+
+            <Button x:Name="SearchButton"
+                    Content="Найти участника"
+                    Margin="0 20 0 0"
+                    Style="{StaticResource BlueButtonStyle}"
+                    Template="{StaticResource RoundedButtonTemplate}" 
+                    Click="SearchButton_Click">
             </Button>
 
             <Button x:Name="BackButton"
                     Content="Сменить аккаунт"
                     Margin="0 20 0 0"
                     Style="{StaticResource BlueButtonStyle}"
-                    Template="{StaticResource RoundedButtonTemplate}" IsCancel="True"/>
+                    Template="{StaticResource RoundedButtonTemplate}" 
+                    IsCancel="True"/>
+
+            <Button x:Name="CancelButton"
+                    Content="Отменить"
+                    Visibility="Hidden"
+                    Margin="0 20 0 0"
+                    Style="{StaticResource BlueButtonStyle}"
+                    Template="{StaticResource RoundedButtonTemplate}" 
+                    Click="CancelButton_Click">
+            </Button>
 
         </StackPanel>
     </Grid>

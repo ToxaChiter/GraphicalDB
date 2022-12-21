@@ -33,6 +33,9 @@
                       x:Name="TableDataGrid"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      EnableColumnVirtualization="True"
+                      EnableRowVirtualization="True"
                       Loaded="UsersTableDataGrid_Loaded">
 
                 <DataGrid.Columns >

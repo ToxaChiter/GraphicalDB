@@ -20,7 +20,6 @@ public partial class AdminUserDataPage : Page
     private void UsersTableDataGrid_Loaded(object sender, RoutedEventArgs e)
     {
         MainWindow mainWindow = App.MainWindow;
-        mainWindow.Context.Database.EnsureCreated();
         mainWindow.Context.Users.Load();
         TableDataGrid.ItemsSource = mainWindow.Context.Users.Local.ToObservableCollection();
     }
