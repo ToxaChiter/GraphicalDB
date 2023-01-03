@@ -10,16 +10,17 @@
         ResizeMode="CanMinimize" 
         Height="300" 
         Width="600" 
-        Icon="{Icon:MaterialImage Kind=NaturePeople}">
+        Icon="{Icon:MaterialImage Kind=NaturePeople}"
+        Background="LightBlue">
 
 
 
-    <Window.Background>
+    <!--<Window.Background>
         <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
             <GradientStop Color="#060531" Offset="0"/>
             <GradientStop Color="#1B1448" Offset="1"/>
         </LinearGradientBrush>
-    </Window.Background>
+    </Window.Background>-->
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -77,7 +78,7 @@
                 Background="Transparent"
                 Foreground="White"
                 CaretBrush="LightGray"
-                BorderBrush="DarkGray"
+                BorderBrush="Black"
                 BorderThickness="0,0,0,2"
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch"
@@ -122,7 +123,7 @@
                 Background="Transparent"
                 Foreground="White"
                 CaretBrush="LightGray"
-                BorderBrush="DarkGray"
+                BorderBrush="Black"
                 BorderThickness="0,0,0,2"
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch"

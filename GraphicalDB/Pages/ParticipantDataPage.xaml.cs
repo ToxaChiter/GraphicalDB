@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore;
 namespace GraphicalDB;
 
 /// <summary>
-/// Логика взаимодействия для DataPage.xaml
+/// Логика взаимодействия для ParticipantDataPage.xaml
 /// </summary>
-public partial class DataPage : Page
+public partial class ParticipantDataPage : Page
 {
-    public DataPage()
+    public ParticipantDataPage()
     {
         InitializeComponent();
 
@@ -86,16 +86,18 @@ public partial class DataPage : Page
 
     private void Top3Button_Click(object sender, RoutedEventArgs e)
     {
+        Top3ParticipantWindow top3ParticipantWindow = new Top3ParticipantWindow();
+        if (top3ParticipantWindow.ShowDialog() == false) return;
+
+        Instruments instrument = top3ParticipantWindow.Instrument;
+
         ObservableCollection<Participant> top3 = new ObservableCollection<Participant>();
 
-        foreach (Instrument instrument in Enum.GetValues(typeof(Instrument)))
-        {
-            (from p in MainCollection
-             where p.Instrument == instrument
-             orderby p.Place
-             select p)
-            .Take(3).ToList().ForEach(p => top3.Add(p));
-        }
+        (from p in MainCollection
+         where p.Instrument == instrument
+         orderby p.Place
+         select p)
+        .Take(3).ToList().ForEach(p => top3.Add(p));
 
         SearchButton.Visibility = Visibility.Hidden;
         YoungersButton.Visibility = Visibility.Hidden;

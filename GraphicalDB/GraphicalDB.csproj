@@ -27,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="DialogWindows\Top3ParticipantWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="DialogWindows\SearchParticipantWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

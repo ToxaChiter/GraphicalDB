@@ -2,7 +2,7 @@
 
 namespace GraphicalDB.DataBase;
 
-enum Role
+enum Roles
 {
     Default,
     Admin
@@ -11,7 +11,7 @@ class User : INotifyPropertyChanged
 {
     private string login;
     private string password;
-    private Role role;
+    private Roles role;
 
 
     public int Id { get; set; }
@@ -46,7 +46,7 @@ class User : INotifyPropertyChanged
             }
         }
     }
-    public Role Role 
+    public Roles Role 
     { 
         get
         {

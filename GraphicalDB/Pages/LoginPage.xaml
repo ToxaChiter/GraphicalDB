@@ -28,14 +28,15 @@
                 MinHeight="200"
                 CornerRadius="20"
                 Grid.Row="1"
-                Grid.Column="1">
+                Grid.Column="1"
+                Background="SlateGray">
                         
-            <Border.Background>
+            <!--<Border.Background>
                 <LinearGradientBrush EndPoint="0.85,0.95" StartPoint="0.2,0.2">
                     <GradientStop Color="Purple" Offset="0"/>
                     <GradientStop Color="Black" Offset="1"/>
                 </LinearGradientBrush>
-            </Border.Background>
+            </Border.Background>-->
             
             <Grid x:Name="LoginGrid">
                 
@@ -79,7 +80,7 @@
                              FontFamily="Montserrat"                            
                              Foreground="White"
                              CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
+                             BorderBrush="Black"
                              BorderThickness="0,0,0,2"
                              HorizontalAlignment="Stretch" 
                              VerticalAlignment="Stretch"
@@ -105,7 +106,7 @@
                          FontFamily="Montserrat"                            
                          Foreground="White"
                          CaretBrush="LightGray"
-                         BorderBrush="DarkGray"
+                         BorderBrush="Black"
                          BorderThickness="0,0,0,2"
                          HorizontalAlignment="Stretch" 
                          VerticalAlignment="Stretch"

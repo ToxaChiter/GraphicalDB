@@ -31,15 +31,15 @@ public partial class AddUserWindow : Window
         DialogResult = true;
     }
 
-    private Role GetRoleFromString(string role)
+    private Roles GetRoleFromString(string role)
     {
         switch (role)
         {
             case "Пользователь":
-                return Role.Default;
+                return Roles.Default;
 
             case "Администратор":
-                return Role.Admin;
+                return Roles.Admin;
 
             default:
                 throw new Exception($"Can't convert string {role} to Role");
@@ -60,7 +60,7 @@ public partial class AddUserWindow : Window
 
     private void RoleComboBox_Loaded(object sender, RoutedEventArgs e)
     {
-        if (User.Role == Role.Admin) RoleComboBox.SelectedIndex = 1;
+        if (User.Role == Roles.Admin) RoleComboBox.SelectedIndex = 1;
         User.Password = string.Empty;
     }
 

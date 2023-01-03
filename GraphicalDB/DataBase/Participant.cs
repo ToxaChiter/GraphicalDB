@@ -2,7 +2,7 @@
 
 namespace GraphicalDB.DataBase;
 
-enum Instrument
+enum Instruments
 {
     Guitar,
     Piano,
@@ -15,7 +15,7 @@ class Participant : INotifyPropertyChanged
     private string name;
     private int birthYear;
     private string country;
-    private Instrument instrument;
+    private Instruments instrument;
     private int place;
 
 
@@ -71,7 +71,7 @@ class Participant : INotifyPropertyChanged
         }
     }
 
-    public Instrument Instrument
+    public Instruments Instrument
     {
         get
         {

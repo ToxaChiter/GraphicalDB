@@ -1,6 +1,7 @@
 ﻿using GraphicalDB.DataBase;
 using GraphicalDB.DialogWindows;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -29,8 +30,8 @@ public partial class AdminUserDataPage : Page
         AddUserWindow addUserWindow = new AddUserWindow(new User());
         if (addUserWindow.ShowDialog() == true)
         {
-            App.MainWindow.Context.Users.Add(addUserWindow.User);
-            App.MainWindow.Context.SaveChanges();
+            DbLogic.AddUser(addUserWindow.User);
+            (TableDataGrid.ItemsSource as ObservableCollection<User>)?.Add(addUserWindow.User);
         }
     }
 
@@ -70,8 +71,8 @@ public partial class AdminUserDataPage : Page
 
         if (user is null) return;
 
-        App.MainWindow.Context.Users.Remove(user);
-        App.MainWindow.Context.SaveChanges();
+        DbLogic.RemoveUser(user);
+        (TableDataGrid.ItemsSource as ObservableCollection<User>)?.Remove(user);
 
         MessageBox.Show(
             "Пользователь успешно удален",

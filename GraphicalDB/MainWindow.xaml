@@ -17,13 +17,14 @@
     
     <Border x:Name="MainBorder"
             CornerRadius="15"
-            BorderThickness="2">
-        <Border.Background>
+            BorderThickness="2"
+            Background="LightBlue">
+        <!--<Border.Background>
             <LinearGradientBrush x:Name="backGradient" EndPoint="0.85,0.95" StartPoint="0.2,0.2">
                 <GradientStop Color="Black" Offset="0"/>
                 <GradientStop Color="Purple" Offset="1"/>
             </LinearGradientBrush>
-        </Border.Background>
+        </Border.Background>-->
         
         <!--<Border.Background>
             <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">

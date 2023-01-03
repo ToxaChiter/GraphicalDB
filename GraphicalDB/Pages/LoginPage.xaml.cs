@@ -62,7 +62,7 @@ public partial class LoginPage : Page
 
         App.AuthorizedUser = user;
 
-        if (user.Role == Role.Admin)
+        if (user.Role == Roles.Admin)
         {
             App.MainWindow.ChangePage(new Uri("Pages/AdminPage.xaml", UriKind.Relative));
         }

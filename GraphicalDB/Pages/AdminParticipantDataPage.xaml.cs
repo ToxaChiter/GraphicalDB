@@ -10,11 +10,11 @@ using System.Windows.Controls;
 namespace GraphicalDB.Pages;
 
 /// <summary>
-/// Логика взаимодействия для AdminDataPage.xaml
+/// Логика взаимодействия для AdminParticipantDataPage.xaml
 /// </summary>
-public partial class AdminDataPage : Page
+public partial class AdminParticipantDataPage : Page
 {
-    public AdminDataPage()
+    public AdminParticipantDataPage()
     {
         InitializeComponent();
         BackButton.Click += App.MainWindow.BackButton_Click;
@@ -36,8 +36,8 @@ public partial class AdminDataPage : Page
         AddParticipantWindow addParticipantWindow = new AddParticipantWindow(new Participant());
         if (addParticipantWindow.ShowDialog() == true)
         {
-            App.MainWindow.Context.Participants.Add(addParticipantWindow.Participant);
-            App.MainWindow.Context.SaveChanges();
+            DbLogic.AddParticipant(addParticipantWindow.Participant);
+            MainCollection.Add(addParticipantWindow.Participant);
         }
     }
 
@@ -77,8 +77,8 @@ public partial class AdminDataPage : Page
 
         if (participant is null) return;
 
-        App.MainWindow.Context.Participants.Remove(participant);
-        App.MainWindow.Context.SaveChanges();
+        DbLogic.RemoveParticipant(participant);
+        MainCollection.Remove(participant);
 
         MessageBox.Show(
             "Участник успешно удален",
@@ -89,15 +89,19 @@ public partial class AdminDataPage : Page
             MessageBoxOptions.DefaultDesktopOnly);
     }
 
+    // Метод отображения в таблице самых юных (до 12 лет) участников 
     private void YoungersButton_Click(object sender, System.Windows.RoutedEventArgs e)
     {
+        // Получение текущего года
         int year = DateTime.Today.Year;
 
+        // Из всех участников взять тех, чей возраст меньше 12 и отсортировать по возрасту по возрастанию
         TableDataGrid.ItemsSource = from p in MainCollection
                                     where year - p.BirthYear < 12
                                     orderby p.BirthYear
                                     select p;
 
+        // Блок изменений в интерфейсе, в основном исчезновение кнопок
         AddParticipantButton.Visibility = Visibility.Hidden;
         SearchButton.Visibility = Visibility.Hidden;
         Top3Button.Visibility = Visibility.Hidden;
@@ -142,19 +146,26 @@ public partial class AdminDataPage : Page
         TableDataGrid.ItemsSource = MainCollection;
     }
 
+    // Метод отображения в таблице Топ-3 участников по инструментам
     private void Top3Button_Click(object sender, RoutedEventArgs e)
     {
+        Top3ParticipantWindow top3ParticipantWindow = new Top3ParticipantWindow();
+        if (top3ParticipantWindow.ShowDialog() == false) return;
+
+        Instruments instrument = top3ParticipantWindow.Instrument;
+
+        // Новая коллекция
         ObservableCollection<Participant> top3 = new ObservableCollection<Participant>();
 
-        foreach (Instrument instrument in Enum.GetValues(typeof(Instrument)))
-        {
-            (from p in MainCollection
-             where p.Instrument == instrument
-             orderby p.Place
-             select p)
-            .Take(3).ToList().ForEach(p => top3.Add(p));
-        }
+        // Из всех участников взять тех, чей инструмент соответсвует текущему,
+        // отсортировать по занятому месту, взять 3 лучших и добавить в коллекцию
+        (from p in MainCollection
+         where p.Instrument == instrument
+         orderby p.Place
+         select p)
+        .Take(3).ToList().ForEach(p => top3.Add(p));
 
+        // Блок изменений в интерфейсе, в основном исчезновение кнопок
         AddParticipantButton.Visibility = Visibility.Hidden;
         SearchButton.Visibility = Visibility.Hidden;
         YoungersButton.Visibility = Visibility.Hidden;
@@ -163,7 +174,7 @@ public partial class AdminDataPage : Page
 
         CancelButton.Visibility = Visibility.Visible;
 
-
+        // Привязка данных коллекции к таблице
         TableDataGrid.ItemsSource = top3;
     }
 }

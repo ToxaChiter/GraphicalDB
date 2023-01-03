@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Security.Cryptography;
-using System.Collections.ObjectModel;
+using System.Text;
 
 namespace GraphicalDB.DataBase;
 
@@ -100,17 +99,17 @@ internal static class DbLogic
         {
             Login = "Admin",
             Password = HashPassword("password"),
-            Role = Role.Admin
+            Role = Roles.Admin
         };
 
 
 
         var table = new ObservableCollection<Participant>
         {
-            new Participant { Id = 1, Name = "Andrew", Country = "Russia", BirthYear = 2004, Instrument = Instrument.Guitar, Place = 3 },
-            new Participant { Id = 2, Name = "Lila", Country = "Belarus", BirthYear = 2002, Instrument = Instrument.Piano, Place = 2 },
-            new Participant { Id = 3, Name = "Ulia", Country = "Ukraine", BirthYear = 2008, Instrument = Instrument.Violin, Place = 4 },
-            new Participant { Id = 4, Name = "Nick", Country = "USA", BirthYear = 1901, Instrument = Instrument.Cello, Place = 1 }
+            new Participant { Id = 1, Name = "Andrew", Country = "Russia", BirthYear = 2004, Instrument = Instruments.Guitar, Place = 3 },
+            new Participant { Id = 2, Name = "Lila", Country = "Belarus", BirthYear = 2002, Instrument = Instruments.Piano, Place = 2 },
+            new Participant { Id = 3, Name = "Ulia", Country = "Ukraine", BirthYear = 2008, Instrument = Instruments.Violin, Place = 4 },
+            new Participant { Id = 4, Name = "Nick", Country = "USA", BirthYear = 1901, Instrument = Instruments.Cello, Place = 1 }
         };
 
         foreach (var part in table)
